@@ -66,6 +66,13 @@ RSpec.describe BankTransfer, type: :model do
       expect(subject.amount).to eql(4000)
     end
 
+    context "when setting a string" do
+      it "returns the amount in cents" do
+        subject.amount = "42.0"
+        expect(subject.amount).to eql(4200)
+      end
+    end
+
     context "when updating the amount" do
       it "returns the amount in cents" do
         subject.amount = 42.00

@@ -8,7 +8,7 @@ class BankTransfer < ApplicationRecord
 
   def amount=(value)
     return if value.blank?
-    super(value*100)
+    super(::ActiveRecord::Type::Decimal.new.cast(value) * 100)
   end
 
   def amount_in_brl
