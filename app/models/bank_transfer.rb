@@ -11,10 +11,6 @@ class BankTransfer < ApplicationRecord
     super(::ActiveRecord::Type::Decimal.new.cast(value) * 100)
   end
 
-  def amount_in_brl
-    amount/100.0
-  end
-
   private
 
   def source_account_amount

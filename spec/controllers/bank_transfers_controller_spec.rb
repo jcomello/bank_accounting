@@ -30,7 +30,7 @@ RSpec.describe BankTransfersController, :type => :controller do
 
       expect(parsed_response["source_account_id"]).to eql(source_account.id)
       expect(parsed_response["destination_account_id"]).to eql(destination_account.id)
-      expect(parsed_response["amount"]).to eql(3)
+      expect(parsed_response["amount"]).to eql(3.0)
     end
 
     context "when params are invalid" do
