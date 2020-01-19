@@ -1,6 +1,4 @@
 class Account < ApplicationRecord
-  include ActiveModel::Serializers::JSON
-
   has_many :withdraws, foreign_key: :source_account_id, class_name: "BankTransfer"
   has_many :deposits, foreign_key: :destination_account_id, class_name: "BankTransfer"
 
@@ -16,12 +14,5 @@ class Account < ApplicationRecord
 
   def balance
     initial_amount + (deposit_amount - withdraw_amount)
-  end
-
-  def attributes
-    {
-      id: id,
-      balance: balance
-    }
   end
 end

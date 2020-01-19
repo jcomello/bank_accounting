@@ -25,7 +25,7 @@ RSpec.describe AccountsController, :type => :controller do
       parsed_response = JSON.parse(response.body)
 
       expect(parsed_response["id"]).to eql(account.id)
-      expect(parsed_response["balance"]).to eql(4500)
+      expect(parsed_response["balance"]).to eql(45.0)
     end
 
     context "when account requested does not exist" do
