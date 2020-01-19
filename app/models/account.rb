@@ -7,4 +7,8 @@ class Account < ApplicationRecord
   def withdraw_amount
     withdraws.sum(:amount)
   end
+
+  def deposit_amount
+    deposits.sum(:amount)
+  end
 end
