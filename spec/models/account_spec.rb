@@ -37,4 +37,24 @@ RSpec.describe Account, type: :model do
       expect(subject.deposit_amount).to eql(2000)
     end
   end
+
+  describe "balance" do
+    let(:other_account) { FactoryBot.create(:account, initial_amount: 50000) }
+
+    let!(:withdraw_transfer) { FactoryBot.create(:bank_transfer, source_account: subject, destination_account: other_account, amount: 367) }
+    let!(:other_withdraw_transfer) { FactoryBot.create(:bank_transfer, source_account: subject, destination_account: other_account, amount: 632) }
+    let!(:yet_another_withdraw_transfer) { FactoryBot.create(:bank_transfer, source_account: subject, destination_account: other_account, amount: 1002) }
+
+    let!(:deposit_transfer) { FactoryBot.create(:bank_transfer, source_account: other_account, destination_account: subject, amount: 499) }
+    let!(:other_deposit_transfer) { FactoryBot.create(:bank_transfer, source_account: other_account, destination_account: subject , amount: 725) }
+    let!(:yet_another_deposit_transfer) { FactoryBot.create(:bank_transfer, source_account: other_account, destination_account: subject, amount: 1015) }
+
+    subject { FactoryBot.create(:account, initial_amount: 50000) }
+
+    context "when is a source account" do
+      it "calculates the balance from deposit amount and withdraw amount" do
+        expect(subject.balance).to eql(50238)
+      end
+    end
+  end
 end

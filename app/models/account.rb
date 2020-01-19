@@ -11,4 +11,8 @@ class Account < ApplicationRecord
   def deposit_amount
     deposits.sum(:amount)
   end
+
+  def balance
+    initial_amount + (deposit_amount - withdraw_amount)
+  end
 end
