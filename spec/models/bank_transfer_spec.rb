@@ -50,6 +50,15 @@ RSpec.describe BankTransfer, type: :model do
       end
     end
   end
+
+  describe "#amount_in_brl" do
+    subject { described_class.new(source_account_id: source_account.id, destination_account_id: destination_account.id, amount: 40.00) }
+
+    it "returns the amount in Brazilian Reais (BRL)" do
+      expect(subject.amount_in_brl).to eql(40.00)
+    end
+  end
+
   describe "#amount=" do
     subject { described_class.new(source_account_id: source_account.id, destination_account_id: destination_account.id, amount: 40.00) }
 
