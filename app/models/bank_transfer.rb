@@ -6,6 +6,10 @@ class BankTransfer < ApplicationRecord
 
   validate :source_account_amount
 
+  def amount=(value)
+    return if value.blank?
+    super(value*100)
+  end
   private
 
   def source_account_amount

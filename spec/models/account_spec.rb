@@ -13,9 +13,9 @@ RSpec.describe Account, type: :model do
   describe "#withdraw_amount" do
     let(:destination_account) { FactoryBot.create(:account, initial_amount: 0) }
 
-    let!(:withdraw_transfer) { FactoryBot.create(:bank_transfer, source_account: subject, destination_account: destination_account, amount: 400) }
-    let!(:other_withdraw_transfer) { FactoryBot.create(:bank_transfer, source_account: subject, destination_account: destination_account, amount: 600) }
-    let!(:yet_another_withdraw_transfer) { FactoryBot.create(:bank_transfer, source_account: subject, destination_account: destination_account, amount: 1000) }
+    let!(:withdraw_transfer) { FactoryBot.create(:bank_transfer, source_account: subject, destination_account: destination_account, amount: 4.00) }
+    let!(:other_withdraw_transfer) { FactoryBot.create(:bank_transfer, source_account: subject, destination_account: destination_account, amount: 6.00) }
+    let!(:yet_another_withdraw_transfer) { FactoryBot.create(:bank_transfer, source_account: subject, destination_account: destination_account, amount: 10.00) }
 
     subject { FactoryBot.create(:account, initial_amount: 50000) }
 
@@ -27,9 +27,9 @@ RSpec.describe Account, type: :model do
   describe "#deposit_amount" do
     let(:source_account) { FactoryBot.create(:account, initial_amount: 50000) }
 
-    let!(:deposit_transfer) { FactoryBot.create(:bank_transfer, source_account: source_account, destination_account: subject, amount: 400) }
-    let!(:other_deposit_transfer) { FactoryBot.create(:bank_transfer, source_account: source_account, destination_account: subject , amount: 600) }
-    let!(:yet_another_deposit_transfer) { FactoryBot.create(:bank_transfer, source_account: source_account, destination_account: subject, amount: 1000) }
+    let!(:deposit_transfer) { FactoryBot.create(:bank_transfer, source_account: source_account, destination_account: subject, amount: 4.00) }
+    let!(:other_deposit_transfer) { FactoryBot.create(:bank_transfer, source_account: source_account, destination_account: subject , amount: 6.00) }
+    let!(:yet_another_deposit_transfer) { FactoryBot.create(:bank_transfer, source_account: source_account, destination_account: subject, amount: 10.00) }
 
     subject { FactoryBot.create(:account, initial_amount: 0) }
 
@@ -41,13 +41,13 @@ RSpec.describe Account, type: :model do
   describe "balance" do
     let(:other_account) { FactoryBot.create(:account, initial_amount: 50000) }
 
-    let!(:withdraw_transfer) { FactoryBot.create(:bank_transfer, source_account: subject, destination_account: other_account, amount: 367) }
-    let!(:other_withdraw_transfer) { FactoryBot.create(:bank_transfer, source_account: subject, destination_account: other_account, amount: 632) }
-    let!(:yet_another_withdraw_transfer) { FactoryBot.create(:bank_transfer, source_account: subject, destination_account: other_account, amount: 1002) }
+    let!(:withdraw_transfer) { FactoryBot.create(:bank_transfer, source_account: subject, destination_account: other_account, amount: 3.67) }
+    let!(:other_withdraw_transfer) { FactoryBot.create(:bank_transfer, source_account: subject, destination_account: other_account, amount: 6.32) }
+    let!(:yet_another_withdraw_transfer) { FactoryBot.create(:bank_transfer, source_account: subject, destination_account: other_account, amount: 10.02) }
 
-    let!(:deposit_transfer) { FactoryBot.create(:bank_transfer, source_account: other_account, destination_account: subject, amount: 499) }
-    let!(:other_deposit_transfer) { FactoryBot.create(:bank_transfer, source_account: other_account, destination_account: subject , amount: 725) }
-    let!(:yet_another_deposit_transfer) { FactoryBot.create(:bank_transfer, source_account: other_account, destination_account: subject, amount: 1015) }
+    let!(:deposit_transfer) { FactoryBot.create(:bank_transfer, source_account: other_account, destination_account: subject, amount: 4.99) }
+    let!(:other_deposit_transfer) { FactoryBot.create(:bank_transfer, source_account: other_account, destination_account: subject , amount: 7.25) }
+    let!(:yet_another_deposit_transfer) { FactoryBot.create(:bank_transfer, source_account: other_account, destination_account: subject, amount: 10.15) }
 
     subject { FactoryBot.create(:account, initial_amount: 50000) }
 
