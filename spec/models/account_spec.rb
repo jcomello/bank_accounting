@@ -9,4 +9,18 @@ RSpec.describe Account, type: :model do
   describe "validations" do
     it { is_expected.to validate_presence_of(:initial_amount) }
   end
+
+  describe "#withdraw_amount" do
+    let(:destination_account) { FactoryBot.create(:account, initial_amount: 0) }
+
+    let!(:withdraw_transfer) { FactoryBot.create(:bank_transfer, source_account: subject, destination_account: destination_account, amount: 400) }
+    let!(:other_withdraw_transfer) { FactoryBot.create(:bank_transfer, source_account: subject, destination_account: destination_account, amount: 600) }
+    let!(:yet_another_withdraw_transfer) { FactoryBot.create(:bank_transfer, source_account: subject, destination_account: destination_account, amount: 1000) }
+
+    subject { FactoryBot.create(:account, initial_amount: 50000) }
+
+    it "sums all withdraws amount" do
+      expect(subject.withdraw_amount).to eql(2000)
+    end
+  end
 end
