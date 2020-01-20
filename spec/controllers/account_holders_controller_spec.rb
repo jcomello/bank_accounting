@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe AccountHoldersController, :type => :controller do
+  before { configure_api_headers }
 
   describe "#create" do
     let(:params) do
