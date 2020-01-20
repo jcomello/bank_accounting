@@ -10,15 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_18_235645) do
+ActiveRecord::Schema.define(version: 2020_01_20_000306) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "account_holders", force: :cascade do |t|
+    t.string "name"
+    t.string "token"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "accounts", force: :cascade do |t|
     t.integer "initial_amount"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "account_holder_id", null: false
+    t.index ["account_holder_id"], name: "index_accounts_on_account_holder_id"
   end
 
   create_table "bank_transfers", force: :cascade do |t|
@@ -29,4 +38,5 @@ ActiveRecord::Schema.define(version: 2020_01_18_235645) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "accounts", "account_holders"
 end
