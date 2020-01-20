@@ -1,9 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe BankTransfersController, :type => :controller do
+  let(:account_holder) { FactoryBot.create(:account_holder) }
 
-  let!(:source_account) { FactoryBot.create(:account, initial_amount: 4500) }
-  let!(:destination_account) { FactoryBot.create(:account, initial_amount: 3000) }
+  let!(:source_account) { FactoryBot.create(:account, account_holder: account_holder, initial_amount: 4500) }
+  let!(:destination_account) { FactoryBot.create(:account, account_holder: account_holder, initial_amount: 3000) }
+
+  before { api_sign_in(account_holder) }
 
   describe "#create" do
     let(:params) do

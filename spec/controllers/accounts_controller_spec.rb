@@ -1,9 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe AccountsController, :type => :controller do
+  let(:account_holder) { FactoryBot.create(:account_holder) }
 
-  let!(:account) { FactoryBot.create(:account, initial_amount: 4500) }
-  let!(:other_account) { FactoryBot.create(:account, initial_amount: 3000) }
+  let!(:account) { FactoryBot.create(:account, account_holder: account_holder, initial_amount: 4500) }
+  let!(:other_account) { FactoryBot.create(:account, account_holder: account_holder, initial_amount: 3000) }
+
+  before { api_sign_in(account_holder) }
 
   describe "#show" do
     let(:params) do
