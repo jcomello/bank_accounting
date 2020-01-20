@@ -32,6 +32,12 @@ RSpec.describe AccountHoldersController, :type => :controller do
       expect(parsed_response["token"]).to be_present
     end
 
+    it "responds the created account" do
+      post :create, params: params
+      parsed_response = JSON.parse(response.body)
+      expect(parsed_response["accounts"].count).to eql(1)
+    end
+
     context "when params are invalid" do
       let(:params) do
         { name: "" }
