@@ -45,7 +45,37 @@ RSpec.describe BankTransfer, type: :model do
 
         it "adds errors" do
           subject.valid?
+          expect(subject.errors["source_account"]).to include("does not have enough amount")
           expect(subject.errors["source_account_id"]).to include("does not have enough amount")
+        end
+      end
+    end
+
+    describe "source_account_ownership" do
+      let(:current_holder) { FactoryBot.create(:account_holder) }
+
+      context "when current holder is the source account owner" do
+        let!(:source_account) { FactoryBot.create(:account, account_holder: current_holder, initial_amount: 3000) }
+
+        subject { described_class.new(source_account_id: source_account.id, destination_account_id: destination_account.id, current_holder: current_holder, amount: 10.00) }
+
+        it { is_expected.to be_valid }
+
+        it "does not add errors" do
+          subject.valid?
+          expect(subject.errors).to be_empty
+        end
+      end
+
+      context "when current holder is not the source account owner" do
+        subject { described_class.new(source_account_id: source_account.id, destination_account_id: destination_account.id, current_holder: current_holder, amount: 10.00) }
+
+        it { is_expected.to be_invalid }
+
+        it "adds errors" do
+          subject.valid?
+          expect(subject.errors["source_account"]).to include("does not belong to the holder")
+          expect(subject.errors["source_account_id"]).to include("does not belong to the holder")
         end
       end
     end

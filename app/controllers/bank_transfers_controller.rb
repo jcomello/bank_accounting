@@ -1,6 +1,6 @@
 class BankTransfersController < ApplicationController
   def create
-    @bank_transfer = BankTransfer.new(bank_transfer_params)
+    @bank_transfer = BankTransfer.new(bank_transfer_params.merge(current_holder: current_holder))
 
     if @bank_transfer.save
       render json: @bank_transfer, status: :created

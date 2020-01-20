@@ -4,7 +4,7 @@ RSpec.describe BankTransfersController, :type => :controller do
   let(:account_holder) { FactoryBot.create(:account_holder) }
 
   let!(:source_account) { FactoryBot.create(:account, account_holder: account_holder, initial_amount: 4500) }
-  let!(:destination_account) { FactoryBot.create(:account, account_holder: account_holder, initial_amount: 3000) }
+  let!(:destination_account) { FactoryBot.create(:account, initial_amount: 3000) }
 
   before { api_sign_in(account_holder) }
 
@@ -36,6 +36,35 @@ RSpec.describe BankTransfersController, :type => :controller do
       expect(parsed_response["amount"]).to eql(3.0)
     end
 
+    context "when source account is from a different account holder" do
+      let!(:source_account) { FactoryBot.create(:account, initial_amount: 4500) }
+      let!(:destination_account) { FactoryBot.create(:account, account_holder: account_holder, initial_amount: 3000) }
+      let(:params) do
+        {
+          source_account_id: source_account.id,
+          destination_account_id: destination_account.id,
+          amount: 3.00
+        }
+      end
+
+      it "does not create a bank transfer" do
+        post :create, params: params
+        expect(assigns(:bank_transfer)).not_to be_persisted
+      end
+
+      it "brings code 422 created" do
+        post :create, params: params
+        expect(response.code).to eq('422')
+      end
+
+      it "responds the errors" do
+        post :create, params: params
+        parsed_response = JSON.parse(response.body)
+
+        expect(parsed_response["source_account_id"]).to include("does not belong to the holder")
+      end
+    end
+
     context "when params are invalid" do
       let(:params) do
         {
@@ -54,7 +83,7 @@ RSpec.describe BankTransfersController, :type => :controller do
         expect(response.code).to eq('422')
       end
 
-      it "responds the created bank transfer" do
+      it "responds the errors" do
         post :create, params: params
         parsed_response = JSON.parse(response.body)
 

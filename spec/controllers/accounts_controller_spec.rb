@@ -41,5 +41,19 @@ RSpec.describe AccountsController, :type => :controller do
         expect(response.code).to eq('404')
       end
     end
+
+    context "when account requested belongs to another account holder" do
+      let!(:other_account_holder) { FactoryBot.create(:account_holder) }
+      let(:params) do
+        { account_id: account.id }
+      end
+
+      before { api_sign_in(other_account_holder) }
+
+      it "brings code 404 not found" do
+        get :show, params: params
+        expect(response.code).to eq('404')
+      end
+    end
   end
 end
