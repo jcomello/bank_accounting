@@ -157,10 +157,11 @@ Isso simplifica nosso código na camada de controller, sendo que a operação qu
 
 ## Contribuindo
 
-1. Faça fork ( https://github.com/[my-github-username]/bank_accounting/fork )
-2. Crie sua feature branch (`git checkout -b my-new-feature`)
-3. Faça commit de suas mudanças (`git commit -am 'Add some feature'`)
-4. Faça Pash da sua branch (`git push origin my-new-feature`)
-5. Crie um novo Pull Request
+1. Crie uma issue ( https://github.com/[my-github-username]/bank_accounting/issues/new )
+2. Faça fork ( https://github.com/[my-github-username]/bank_accounting/fork )
+3. Crie sua feature branch (`git checkout -b my-new-feature`)
+4. Faça commit de suas mudanças (`git commit -am 'Add some feature'`)
+5. Faça Pash da sua branch (`git push origin my-new-feature`)
+6. Crie um novo Pull Request
 
 Espero que gostem :smile:
