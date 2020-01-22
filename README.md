@@ -154,4 +154,4 @@ Optei por sempre calculá-los por ser uma aplicação ainda pequena e por ser ma
 
 Isso simplifica nosso código na camada de controller, sendo que a operação que provavelmente será mais crítica é a de transferência bancária.
 
-Espero que gostem :)
+Espero que gostem :smile:
