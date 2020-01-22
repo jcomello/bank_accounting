@@ -138,15 +138,15 @@ EXEMPLO DE RESPOSTA
 
 Como em toda aplicação tomamos decisões importantes na hora de desenvolver. O importante é saber o motivo destas decisões e seus pontos positivos e negativos. As mais importantes são:
 
-1) Serializers x API Views
+#### Serializers x API Views
 
 Optei por utilizar os [ActiveModelSerializers](https://github.com/rails-api/active_model_serializers) por ser uma forma simples, reaproveitavel e facil de testar. Atualmente estão fazendo algumas renovações, mas o que está sendo usado não é impactado por essas mudanças.
 
-2) Valores em centavos
+#### Valores em centavos
 
 Como são valores em dinheiro optei por salvar os valores em centavos, ou seja, em inteiros para facilitar as operações internamente. Nós não faremos arredondamentos com os valores e não queremos permitir frações de centavos.
 
-3) Valores do saldo calculados
+#### Valores do saldo calculados
 
 Uma decisão muito dificil de tomar foi a de atualizar o valor do saldo em cada uma das contas ou calculá-los sempre.
 
