@@ -134,3 +134,24 @@ EXEMPLO DE RESPOSTA
   "updated_at":"2020-01-22T18:38:13.758Z"
 }
 ```
+### Decisões tomadas
+
+Como em toda aplicação tomamos decisões importantes na hora de desenvolver. O importante é saber o motivo destas decisões e seus pontos positivos e negativos. As mais importantes são:
+
+1) Serializers x API Views
+
+Optei por utilizar os [ActiveModelSerializers](https://github.com/rails-api/active_model_serializers) por ser uma forma simples, reaproveitavel e facil de testar. Atualmente estão fazendo algumas renovações, mas o que está sendo usado não é impactado por essas mudanças.
+
+2) Valores em centavos
+
+Como são valores em dinheiro optei por salvar os valores em centavos, ou seja, em inteiros para facilitar as operações internamente. Nós não faremos arredondamentos com os valores e não queremos permitir frações de centavos.
+
+3) Valores do saldo calculados
+
+Uma decisão muito dificil de tomar foi a de atualizar o valor do saldo em cada uma das contas ou calculá-los sempre.
+
+Optei por sempre calculá-los por ser uma aplicação ainda pequena e por ser mais simples de implementar. O cálculo do saldo tanto para a validação da transferência quanto para mostrar o saldo tem complexidade O(n). Assim, cada vez que criarmos uma transferência bancária a criação ficará mais lenta. Sabendo disso podemos no futuro criar valores parciais de saldo. Por exemplo: todo dia à meia noite nós congelamos o saldo bancário e em vez de calcularmos o saldo através de todas as transferências de saque e deposito usando com base o valor inicial, nós aplicamos as transferências feitas no dia da consulta no valor inicial do dia.
+
+Isso simplifica nosso código na camada de controller, sendo que a operação que provavelmente será mais crítica é a de transferência bancária.
+
+Espero que gostem :)
