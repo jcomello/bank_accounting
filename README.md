@@ -29,7 +29,7 @@ $ bundle exec rake db:setup
 2) Rode a aplicação:
 
 ```
-$ bin/foreman start
+$ rails s
 ```
 
 ## Utilizando a aplicação
