@@ -5,7 +5,7 @@ class AccountHoldersController < ApplicationController
     @account_holder = AccountHolder.new(account_holder_params)
 
     if @account_holder.save
-      @account = @account_holder.accounts.create
+      @account = @account_holder.accounts.create(initial_amount: 10000)
       render json: @account_holder, status: :created
     else
       render json: @account_holder.errors, status: :unprocessable_entity

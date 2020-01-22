@@ -19,6 +19,11 @@ RSpec.describe AccountHoldersController, :type => :controller do
       expect(assigns(:account).account_holder).to eql(assigns(:account_holder))
     end
 
+    it "creates an account with initial amount of R$ 100,00" do
+      post :create, params: params
+      expect(assigns(:account).initial_amount).to eql(10000)
+    end
+
     it "brings code 201 created" do
       post :create, params: params
       expect(response.code).to eq('201')
