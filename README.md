@@ -154,4 +154,13 @@ Optei por sempre calculá-los por ser uma aplicação ainda pequena e por ser ma
 
 Isso simplifica nosso código na camada de controller, sendo que a operação que provavelmente será mais crítica é a de transferência bancária.
 
+
+## Contribuindo
+
+1. Faça fork ( https://github.com/[my-github-username]/bank_accounting/fork )
+2. Crie sua feature branch (`git checkout -b my-new-feature`)
+3. Faça commit de suas mudanças (`git commit -am 'Add some feature'`)
+4. Faça Pash da sua branch (`git push origin my-new-feature`)
+5. Crie um novo Pull Request
+
 Espero que gostem :smile:
