@@ -1,0 +1,108 @@
+{
+	"info": {
+		"_postman_id": "7cac6979-f497-477a-b54c-8a312c0f4545",
+		"name": "Bank Accounting",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:3000/bank_transfers",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Token 453ae11b2e525f2e9cd9815746f36c08",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"source_account_id\": 3,\n\t\"destination_account_id\": 4,\n\t\"amount\": 1.03\n}\n"
+				},
+				"url": {
+					"raw": "localhost:3000/bank_transfers",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"bank_transfers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/accounts/2",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token 453ae11b2e525f2e9cd9815746f36c08",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:3000/accounts/2",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"accounts",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/account_holders",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n\t\"name\": \"Joãozinho\" \n}"
+				},
+				"url": {
+					"raw": "localhost:3000/account_holders",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"account_holders"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
